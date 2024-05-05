@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { RegisterAPI, LoginAPI } from "../api/AuthAPI";
+import {Link} from 'react-router-dom';
+import { toast } from "react-toastify";
+import { RegisterAPI, LoginAPI, GoogleSignInAPI } from "../api/AuthAPI";
 import linkedInLogo from "../assets/linkedInLogo.png";
+import GoogleButton from 'react-google-button'
 import '../sass/LoginCompo.scss'
 
 export default function LoginCompo() {
@@ -14,15 +17,22 @@ export default function LoginCompo() {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+
   const login = async () => {
     try {
       const res = await LoginAPI(email, password); // Assuming LoginAPI expects email and password as arguments
-      console.log(res.user.email);
+      toast.success('Signed In to LinkedIn!');
     }
     catch (error) {
-      console.log('Login failed:', error.code);
+      toast.error('Signin Failed!');
     }
   };
+
+const googleSignIn = () => {
+  let response = GoogleSignInAPI();
+  console.log(response);
+}
+
   return (
     <>
       <div className="login-wrapper">
@@ -52,7 +62,17 @@ export default function LoginCompo() {
             Sign in
           </button>
         </div>
-        <hr className="hr-text" data-content="OR"/>
+        <hr className="hr-text" data-content="OR" />
+        <div className="google-btn-container">
+          <GoogleButton
+            className="google-btn"
+            style={{width: "420px"}}
+            onClick={googleSignIn}
+          />
+          <p className="go-to-signup">
+            New to LinkedIn? <span className="join-now">Join now</span>
+          </p>
+        </div>
       </div>
     </>
   );
