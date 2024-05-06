@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {LoginAPI, GoogleSignInAPI } from "../api/AuthAPI";
 import linkedInLogo from "../assets/linkedInLogo.png";
 import GoogleButton from 'react-google-button';
-import '../sass/LoginCompo.scss'
+import '../sass/LoginCompo.scss';
 
 export default function LoginCompo() {
   let navigate = useNavigate();
@@ -23,6 +23,7 @@ export default function LoginCompo() {
     try {
       const res = await LoginAPI(email, password); // Assuming LoginAPI expects email and password as arguments
       toast.success('Signed In to LinkedIn!');
+      navigate('/home');
     }
     catch (error) {
       toast.error('Signin Failed!');
@@ -79,42 +80,3 @@ const googleSignIn = () => {
     </>
   );
 }
-
-// export default function loginCompo() {
-
-//   const [credentails, setCredentials] = useState({});
-//   const login = async () => {
-//         try {
-//           let res = await RegisterAPI(credentails.email, credentails.password); // Assuming LoginAPI expects email and password as arguments
-//           console.log(res);
-//         }
-//         catch (error) {
-//           console.error('Login failed:', error);
-//         }
-//   }
-//   return(
-//     <>
-//       <div className="auth-inputs">
-//           <input
-//             onChange={(event) =>
-//               setCredentials({ ...credentails, email: event.target.value })
-//             }
-//             type="email"
-//             className="common-input"
-//             placeholder="Email or Phone"
-//           />
-//           <input
-//             onChange={(event) =>
-//               setCredentials({ ...credentails, password: event.target.value })
-//             }
-//             type="password"
-//             className="common-input"
-//             placeholder="Password"
-//           />
-//         </div>
-//         <button onClick={login} className="login-btn">
-//           Sign in
-//         </button>
-//     </>
-//   )
-// }

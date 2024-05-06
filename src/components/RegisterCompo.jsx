@@ -23,7 +23,7 @@ export default function RegisterCompo() {
       try {
         const res = await RegisterAPI(email, password); // Assuming LoginAPI expects email and password as arguments
         toast.success('Account created!');
-        navigate('/login');
+        navigate('/home');
       }
       catch (error) {
         toast.error('Cannot create your account!');
