@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom';
 import { toast } from "react-toastify";
-import { RegisterAPI, LoginAPI, GoogleSignInAPI } from "../api/AuthAPI";
+import { useNavigate } from "react-router-dom";
+import {LoginAPI, GoogleSignInAPI } from "../api/AuthAPI";
 import linkedInLogo from "../assets/linkedInLogo.png";
-import GoogleButton from 'react-google-button'
+import GoogleButton from 'react-google-button';
 import '../sass/LoginCompo.scss'
 
 export default function LoginCompo() {
+  let navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -70,7 +71,8 @@ const googleSignIn = () => {
             onClick={googleSignIn}
           />
           <p className="go-to-signup">
-            New to LinkedIn? <span className="join-now">Join now</span>
+            New to LinkedIn?
+            <span className="join-now"  onClick={() => navigate('/register')}>Join now</span>
           </p>
         </div>
       </div>
