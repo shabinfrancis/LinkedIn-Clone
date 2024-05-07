@@ -23,7 +23,7 @@ export default function LoginCompo() {
     try {
       const res = await LoginAPI(email, password); // Assuming LoginAPI expects email and password as arguments
       toast.success('Signed In to LinkedIn!');
-      navigate('/home');
+      navigate("/home");
     }
     catch (error) {
       toast.error('Signin Failed!');
@@ -32,7 +32,7 @@ export default function LoginCompo() {
 
 const googleSignIn = () => {
   let response = GoogleSignInAPI();
-  console.log(response);
+  navigate("/home");
 }
 
   return (
