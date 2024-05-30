@@ -10,7 +10,7 @@ export default function Login() {
   let navigate = useNavigate();
   useEffect(() => {
     onAuthStateChanged(auth, (res) => {
-      if (res.accessToken) {
+      if (!res.accessToken) {
         navigate('/home');
       }
       else {
